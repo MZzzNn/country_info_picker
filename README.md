@@ -4,7 +4,7 @@
 
 A Flutter package to select a country from a list, with features like country name, flag, dial code, code, nationality, and the maximum length of a phone number.
 
-![Country Info Picker](https://raw.githubusercontent.com/hoanglm4/country_info_picker/master/example/assets/country_info_picker.png)
+![Country Info Picker](https://github.com/MZzzNn/country_info_picker/tree/main/assets/img.png)
 
 ## Features
 - Show country flag.

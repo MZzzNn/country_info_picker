@@ -3,12 +3,26 @@ name: Publish to pub.dev
 on:
   push:
     tags:
-      - 'v[0-9]+.[0-9]+.[0-9]+*'
+      - 'v[0-9]+.[0-9]+.[0-9]+'  # Corrected regex for version tags
 
 jobs:
   publish:
+    runs-on: ubuntu-latest  # Specifies the runner environment
     permissions:
-      id-token: write # Required for authentication using OIDC
-    uses: dart-lang/setup-dart/.github/workflows/publish.yml@v1
-    with:
-       working-directory: packages/country_info_picker
+      contents: read
+      id-token: write  # Make sure this permission is actually required
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v3
+
+      - name: Set up Dart SDK
+        uses: dart-lang/setup-dart@v1.2  # Use the setup-dart action to install Dart SDK
+        with:
+          version: 'stable'  # Specifies Dart SDK version, adjust as needed
+
+      - name: Change working directory and publish
+        working-directory: packages/country_info_picker
+        run: |
+          dart pub get
+          dart pub publish  # Publish the package to pub.dev
+
