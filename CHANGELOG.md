@@ -1,23 +1,31 @@
 # Changelog
 
-## Release notes for the `country_info_picker` package.
+This file contains all the notable changes for the `country_info_picker` package.
+
+## [Released]
+
+## [0.0.4] - 2024-04-20
+
+### Added
+- Added support for customizing the country picker dialog.
 
 ## [0.0.3] - 2024-04-20
 
 ### Added
-- Added a GitHub repository for the package.
+- GitHub repository for the package.
 
-### [0.0.2] - 2024-04-19
+## [0.0.2] - 2024-04-19
 
 ### Fixed
-- Fixed the issue with the country picker dialog not showing the selected country.
+- Issue with the country picker dialog not showing the selected country.
 - Updated initial selection logic to include more criteria for matching the selected country.
+
 ## [0.0.1] - 2024-04-18
 
 ### Added
 - Initial release of the "country_info_picker" package.
-- Provides a country picker (name, flag, dial code, code, nationality, max length of phone number).
-- Includes assets for country flags.
+- Country picker features: name, flag, dial code, code, nationality, max length of phone number.
+- Assets for country flags.
 - Country picker widget with customization options.
 - Selection dialog for picking a country.
 - Country type enum for different display options.
@@ -26,9 +34,14 @@
 - MIT License for the package.
 
 ### Changed
-- Refactored code for better readability and maintainability.
+- Code refactoring for better readability and maintainability.
 - Improved widget customization options.
 - Enhanced localization support.
 
 ### Fixed
-- Bug fixes and performance improvements.
+- Various bug fixes and performance improvements.
+
+[Unreleased]: https://github.com/mzzznn/country_info_picker/compare/v0.0.3...HEAD
+[0.0.3]: https://github.com/mzzznn/country_info_picker/compare/v0.0.2...v0.0.3
+[0.0.2]: https://github.com/mzzznn/country_info_picker/compare/v0.0.1...v0.0.2
+[0.0.1]: https://github.com/mzzznn/country_info_picker/releases/tag/v0.0.1
