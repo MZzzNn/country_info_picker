@@ -4,23 +4,28 @@ This file contains all the notable changes for the `country_info_picker` package
 
 ## [Released]
 
-## [0.0.4] - 2024-04-20
+## [0.0.5]
+
+### Fixed
+- Update the package description in the `CHANGELOG.md` file.
+
+## [0.0.4]
 
 ### Added
 - Added support for customizing the country picker dialog.
 
-## [0.0.3] - 2024-04-20
+## [0.0.3]
 
 ### Added
 - GitHub repository for the package.
 
-## [0.0.2] - 2024-04-19
+## [0.0.2] 
 
 ### Fixed
 - Issue with the country picker dialog not showing the selected country.
 - Updated initial selection logic to include more criteria for matching the selected country.
 
-## [0.0.1] - 2024-04-18
+## [0.0.1] 
 
 ### Added
 - Initial release of the "country_info_picker" package.
@@ -41,7 +46,7 @@ This file contains all the notable changes for the `country_info_picker` package
 ### Fixed
 - Various bug fixes and performance improvements.
 
-[Unreleased]: https://github.com/mzzznn/country_info_picker/compare/v0.0.3...HEAD
+[released]: https://github.com/mzzznn/country_info_picker/compare/v0.0.3...HEAD
 [0.0.3]: https://github.com/mzzznn/country_info_picker/compare/v0.0.2...v0.0.3
 [0.0.2]: https://github.com/mzzznn/country_info_picker/compare/v0.0.1...v0.0.2
 [0.0.1]: https://github.com/mzzznn/country_info_picker/releases/tag/v0.0.1
