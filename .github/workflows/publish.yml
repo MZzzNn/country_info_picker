@@ -13,7 +13,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Set up Flutter
-        uses: subosito/flutter-action@v2
+        uses: dart-lang/setup-dart@v1.2  # Use the setup-dart action to install Dart SDK
         with:
           flutter-version: 'stable'  # Specify the Flutter version if needed, or use 'stable'
 
