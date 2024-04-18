@@ -82,6 +82,5 @@ Contributions of any kind are more than welcome! Feel free to fork and improve c
 
 
 ## License
-```
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-```
+
