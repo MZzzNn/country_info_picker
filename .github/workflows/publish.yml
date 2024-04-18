@@ -3,26 +3,31 @@ name: Publish to pub.dev
 on:
   push:
     tags:
-      - 'v[0-9]+\.[0-9]+\.[0-9]+'  # Corrected regex to properly capture semantic versioning tags
+      - 'v[0-9]+.[0-9]+.[0-9]+*'
 
 jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
-      - name: Check out code
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
-      - name: Set up Flutter
-        uses: subosito/flutter-action@v2
+      - name: Setup Dart SDK
+        uses: dart-lang/setup-dart@v1.2
         with:
-          flutter-version: 'stable'  # Specify the Flutter version if needed, or use 'stable'
+          sdk: stable
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v1
+        with:
+          flutter-version: '2.x'
+          channel: 'stable'
 
       - name: Install dependencies
         run: flutter pub get
-        env:
-          PUB_CACHE: /home/runner/.pub-cache
+        working-directory: packages/country_info_picker
 
-      - name: Publish (dry run)
+      - name: Publish
         run: flutter pub publish --dry-run
+        working-directory: packages/country_info_picker
         env:
-          PUB_CACHE: /home/runner/.pub-cache
+          PUB_TOKEN: ${{ secrets.PUB_TOKEN }}
