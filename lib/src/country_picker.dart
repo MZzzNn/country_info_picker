@@ -82,6 +82,7 @@ class CountryInfoPicker extends StatefulWidget {
   // [CountryPickerType] to show the Dialog or Page for selection
   final CountryPickerType countryPickerType;
   final FloatingLabelAlignment? floatingLabelAlignment;
+
   const CountryInfoPicker({
     this.onChanged,
     this.onInit,
@@ -171,20 +172,28 @@ class CountryInfoPickerState extends State<CountryInfoPicker> {
         child: TextFormField(
           enabled: false,
           style: const TextStyle(
-            color: Colors.black,
+            color: Color(0xff111111),
             fontWeight: FontWeight.w400,
           ),
+          controller: TextEditingController()
+            ..text = selectedItem != null
+                ? _getTextValue(selectedItem!, widget.countryPickerType)
+                : '',
           decoration: InputDecoration(
             suffixIcon: widget.suffixIcon,
-            labelText: _getTypeTitle(widget.countryPickerType,context),
-            labelStyle: const TextStyle(fontWeight: FontWeight.w500),
-            floatingLabelAlignment:widget.floatingLabelAlignment,
-            hintText: selectedItem!=null?_getTextValue(selectedItem!,widget.countryPickerType):_getTypeTitle(widget.countryPickerType,context),
-            hintFadeDuration: const Duration(milliseconds: 100),
+            labelText: _getTypeTitle(widget.countryPickerType, context),
+            labelStyle: TextStyle(
+              color: selectedItem != null
+                  ? const Color(0xFF334760).withOpacity(0.4)
+                  : const Color(0xff111111),
+              fontWeight: FontWeight.w500,
+            ),
+            floatingLabelAlignment: widget.floatingLabelAlignment,
+            floatingLabelBehavior: FloatingLabelBehavior.auto,
+            // hintText: selectedItem!=null?_getTextValue(selectedItem!,widget.countryPickerType):_getTypeTitle(widget.countryPickerType,context),            hintFadeDuration: const Duration(milliseconds: 100),
             alignLabelWithHint: true,
-            floatingLabelBehavior: FloatingLabelBehavior.always,
-            hintStyle: const TextStyle(color: Colors.black),
-            contentPadding: const EdgeInsetsDirectional.only(start: 22 ,top: 20, bottom: 16),
+            // hintStyle: const TextStyle(color: Colors.black),
+            // contentPadding: const EdgeInsetsDirectional.only(start: 22 ,top: 20, bottom: 16),
             enabledBorder: const OutlineInputBorder(
               borderSide: BorderSide(width: 0.1, color: Colors.grey),
               borderRadius: BorderRadius.all(Radius.circular(4.0)),
@@ -215,11 +224,13 @@ class CountryInfoPickerState extends State<CountryInfoPicker> {
     if (oldWidget.initialSelection != widget.initialSelection) {
       if (widget.initialSelection != null) {
         selectedItem = elements.firstWhere(
-            (criteria) =>
-                (criteria.code!.toUpperCase() ==
+            (item) =>
+                (item.code!.toUpperCase() ==
                     widget.initialSelection!.toUpperCase()) ||
-                (criteria.dialCode == widget.initialSelection) ||
-                (criteria.name!.toUpperCase() ==
+                (item.dialCode == widget.initialSelection) ||
+                (item.nationality == widget.initialSelection) ||
+                (item.toCountryStringOnly() == widget.initialSelection) ||
+                (item.name!.toUpperCase() ==
                     widget.initialSelection!.toUpperCase()),
             orElse: () => elements[0]);
       }
@@ -237,6 +248,8 @@ class CountryInfoPickerState extends State<CountryInfoPicker> {
               (item.code!.toUpperCase() ==
                   widget.initialSelection!.toUpperCase()) ||
               (item.dialCode == widget.initialSelection) ||
+              (item.nationality == widget.initialSelection) ||
+              (item.toCountryStringOnly() == widget.initialSelection) ||
               (item.name!.toUpperCase() ==
                   widget.initialSelection!.toUpperCase()),
           orElse: () => elements[0]);
@@ -246,11 +259,12 @@ class CountryInfoPickerState extends State<CountryInfoPicker> {
             widget.favorite.firstWhereOrNull((criteria) =>
                 item.code!.toUpperCase() == criteria.toUpperCase() ||
                 item.dialCode == criteria ||
+                item.nationality == criteria ||
+                item.toCountryStringOnly() == criteria ||
                 item.name!.toUpperCase() == criteria.toUpperCase()) !=
             null)
         .toList();
   }
-
 
   void _showCountryCodePicker() {
     if (widget.showPage) {
@@ -296,51 +310,53 @@ class CountryInfoPickerState extends State<CountryInfoPicker> {
     }
   }
 
-void _showCountryCodePickerPage() async {
-  final item = await Navigator.push(
-    context,
-    PageRouteBuilder(
-      pageBuilder: (context, animation, secondaryAnimation) => _SelectionPage(
-        elements,
-        favoriteElements,
-        emptySearchBuilder: widget.emptySearchBuilder,
-        searchDecoration: widget.searchDecoration,
-        searchStyle: widget.searchStyle,
-        textStyle: widget.dialogTextStyle,
-        boxDecoration: widget.boxDecoration,
-        showFlag: widget.showFlagDialog ?? widget.showFlag,
-        flagWidth: widget.flagWidth,
-        size: widget.dialogSize,
-        backgroundColor: widget.dialogBackgroundColor,
-        barrierColor: widget.barrierColor,
-        hideSearch: widget.hideSearch,
-        closeIcon: widget.closeIcon,
-        flagDecoration: widget.flagDecoration,
-        type: widget.countryPickerType,
+  void _showCountryCodePickerPage() async {
+    final item = await Navigator.push(
+      context,
+      PageRouteBuilder(
+        pageBuilder: (context, animation, secondaryAnimation) => _SelectionPage(
+          elements,
+          favoriteElements,
+          emptySearchBuilder: widget.emptySearchBuilder,
+          searchDecoration: widget.searchDecoration,
+          searchStyle: widget.searchStyle,
+          textStyle: widget.dialogTextStyle,
+          boxDecoration: widget.boxDecoration,
+          showFlag: widget.showFlagDialog ?? widget.showFlag,
+          flagWidth: widget.flagWidth,
+          size: widget.dialogSize,
+          backgroundColor: widget.dialogBackgroundColor,
+          barrierColor: widget.barrierColor,
+          hideSearch: widget.hideSearch,
+          closeIcon: widget.closeIcon,
+          flagDecoration: widget.flagDecoration,
+          type: widget.countryPickerType,
+        ),
+        transitionsBuilder: (context, animation, secondaryAnimation, child) {
+          var begin = const Offset(0.0, 1.0);
+          var end = Offset.zero;
+          var curve = Curves.ease;
+
+          var tween =
+              Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+          return SlideTransition(
+            position: animation.drive(tween),
+            child: child,
+          );
+        },
       ),
-      transitionsBuilder: (context, animation, secondaryAnimation, child) {
-        var begin = const Offset(0.0, 1.0);
-        var end = Offset.zero;
-        var curve = Curves.ease;
+    );
 
-        var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+    if (item != null) {
+      setState(() {
+        selectedItem = item;
+      });
 
-        return SlideTransition(
-          position: animation.drive(tween),
-          child: child,
-        );
-      },
-    ),
-  );
-
-  if (item != null) {
-    setState(() {
-      selectedItem = item;
-    });
-
-    _publishSelection(item);
+      _publishSelection(item);
+    }
   }
-}
+
   void _publishSelection(CountryInfoModel countryCode) {
     if (widget.onChanged != null) {
       widget.onChanged!(countryCode);
