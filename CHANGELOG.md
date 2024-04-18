@@ -2,6 +2,11 @@
 
 ## Release notes for the `country_info_picker` package.
 
+### [0.0.2] - 2024-04-19
+
+### Fixed
+- Fixed the issue with the country picker dialog not showing the selected country.
+- Updated initial selection logic to include more criteria for matching the selected country.
 ## [0.0.1] - 2024-04-18
 
 ### Added
