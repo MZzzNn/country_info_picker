@@ -31,6 +31,5 @@ jobs:
 
       - name: Publish
         run: flutter pub publish --dry-run
-        working-directory: packages/country_info_picker
         env:
           PUB_TOKEN: ${{ secrets.PUB_TOKEN }}
