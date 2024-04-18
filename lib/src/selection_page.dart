@@ -65,11 +65,8 @@ class _SelectionPageState extends State<_SelectionPage> {
             .of(context)
             .scaffoldBackgroundColor,
         iconTheme: const IconThemeData(color: Colors.black),
-        titleTextStyle: Theme
-            .of(context)
-            .appBarTheme
-            .titleTextStyle!
-            .copyWith(color: Colors.black, fontSize: 18),
+        titleTextStyle: Theme.of(context).appBarTheme
+            .titleTextStyle?.copyWith(color: Colors.black, fontSize: 18),
         automaticallyImplyLeading: false,
         elevation: 0,
         leading: IconButton(

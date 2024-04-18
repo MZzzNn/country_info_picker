@@ -296,10 +296,11 @@ class CountryInfoPickerState extends State<CountryInfoPicker> {
     }
   }
 
-  void _showCountryCodePickerPage() async {
-    final item = await Get.to(
-      ()=>
-      _SelectionPage(
+void _showCountryCodePickerPage() async {
+  final item = await Navigator.push(
+    context,
+    PageRouteBuilder(
+      pageBuilder: (context, animation, secondaryAnimation) => _SelectionPage(
         elements,
         favoriteElements,
         emptySearchBuilder: widget.emptySearchBuilder,
@@ -317,19 +318,29 @@ class CountryInfoPickerState extends State<CountryInfoPicker> {
         flagDecoration: widget.flagDecoration,
         type: widget.countryPickerType,
       ),
-      transition: Transition.downToUp,
-      fullscreenDialog: true,
-    );
+      transitionsBuilder: (context, animation, secondaryAnimation, child) {
+        var begin = const Offset(0.0, 1.0);
+        var end = Offset.zero;
+        var curve = Curves.ease;
 
-    if (item != null) {
-      setState(() {
-        selectedItem = item;
-      });
+        var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
 
-      _publishSelection(item);
-    }
+        return SlideTransition(
+          position: animation.drive(tween),
+          child: child,
+        );
+      },
+    ),
+  );
+
+  if (item != null) {
+    setState(() {
+      selectedItem = item;
+    });
+
+    _publishSelection(item);
   }
-
+}
   void _publishSelection(CountryInfoModel countryCode) {
     if (widget.onChanged != null) {
       widget.onChanged!(countryCode);

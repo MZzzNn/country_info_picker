@@ -78,8 +78,6 @@ class _MyHomePageState extends State<MyHomePage> {
                         ],
                         keyboardType: TextInputType.phone,
                         decoration: InputDecoration(
-                          fillColor: Colors.white,
-                          filled: true,
                           hintText: selectedCountry?.hintPhone,
                           labelText: "Mobile Number *",
                           prefixIcon: const Icon(
