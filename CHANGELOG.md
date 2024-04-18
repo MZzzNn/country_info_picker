@@ -2,6 +2,11 @@
 
 ## Release notes for the `country_info_picker` package.
 
+## [0.0.3] - 2024-04-20
+
+### Added
+- Added a GitHub repository for the package.
+
 ### [0.0.2] - 2024-04-19
 
 ### Fixed
