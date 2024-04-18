@@ -4,6 +4,11 @@ This file contains all the notable changes for the `country_info_picker` package
 
 ## [Released]
 
+## [0.0.7]
+
+## Fixed
+- Update the package description in the `CHANGELOG.md` file.
+
 ### [0.0.6]
 
 ### Fixed
