@@ -54,9 +54,9 @@ This file contains all the notable changes for the `country_info_picker` package
 - Various bug fixes and performance improvements.
 
 [released]: https://github.com/mzzznn/country_info_picker/
-[0.0.6]: https://github.com/MZzzNn/country_info_picker/compare/v0.0.5...v.0.0.6
-[0.0.5]: https://github.com/MZzzNn/country_info_picker/compare/v0.0.4...v.0.0.5
-[0.0.4]: https://github.com/MZzzNn/country_info_picker/compare/v0.0.3...v.0.0.4
-[0.0.3]: https://github.com/mzzznn/country_info_picker/compare/v0.0.2...v.0.0.3
-[0.0.2]: https://github.com/mzzznn/country_info_picker/compare/v0.0.1...v.0.0.2
+[0.0.6]: https://github.com/MZzzNn/country_info_picker/compare/v0.0.5...v0.0.6
+[0.0.5]: https://github.com/MZzzNn/country_info_picker/compare/v0.0.4...v0.0.5
+[0.0.4]: https://github.com/MZzzNn/country_info_picker/compare/v0.0.3...v0.0.4
+[0.0.3]: https://github.com/mzzznn/country_info_picker/compare/v0.0.2...v0.0.3
+[0.0.2]: https://github.com/mzzznn/country_info_picker/compare/v0.0.1...v0.0.2
 [0.0.1]: https://github.com/mzzznn/country_info_picker/releases/tag/v0.0.1
