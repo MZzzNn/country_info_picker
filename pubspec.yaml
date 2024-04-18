@@ -1,6 +1,6 @@
 name: country_info_picker
 description: "Provides a country picker (name, flag, dial code, code, nationality, max length of phone number) for The Country Picker."
-version: 0.0.4
+version: 0.0.5
 homepage: https://github.com/mzzznn
 repository: https://github.com/mzzznn/country_info_picker
 
