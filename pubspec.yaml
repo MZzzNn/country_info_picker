@@ -1,0 +1,24 @@
+name: country_info_picker
+description: "Provides a country picker (name, flag, dial code, code, nationality, max length of phone number) for The Country Picker."
+version: 0.0.1
+homepage: https://github.com/flutter/flutter
+
+environment:
+  sdk: '>=3.3.2 <4.0.0'
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^3.0.2
+  get: ^4.6.6
+
+flutter:
+
+  assets:
+    - assets/flags/
