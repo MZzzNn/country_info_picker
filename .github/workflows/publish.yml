@@ -19,6 +19,8 @@ jobs:
 
       - name: Install dependencies
         run: flutter pub get
+        env:
+          PUB_CACHE: /home/runner/.pub-cache
 
       - name: Publish
         run: flutter pub publish --dry-run
